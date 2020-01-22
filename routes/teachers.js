@@ -49,21 +49,49 @@ route.post("/signup", async (req, res) => {
   }
 });
 
-//Increase the attendance
+/*
+//Add a class
+route.get('/add',auth,(req,res)=>{
+  try {
+    let teacher=await Teachers.find({_id: req.id})
+    let newTeacher=await Teachers.findByIdAndUpdate(req.id,{classes: teacher.classes+1},{new: true})
+    res.json({msg: 'success',newTeacher})
+  } catch (error) {
+    res.json(error) 
+  }
+})
+//Get total classes of each subject
+route.get('/total/:subject',auth,(req,res)=>{
+  try {
+    //Array of teachers who teach the specific subject
+    let teachers=await Teachers.find({subject: req.params.subject})
+    res.json({msg: 'success',teacher})
+  } catch (error) {
+    res.json(error) 
+  }
+})
+*/
+//Modify the attendance
 
-route.get("/:id", auth, async (req, res) => {
+route.get("/modify", auth, async (req, res) => {
   try {
     let teacher = await Teachers.findOne({ _id: req.id });
-    // console.log(teacher);
-    let Student = await Students.findOne({ _id: req.params.id });
+    //console.log(teacher);
+    let Student = await Students.findOne({ _id: req.query.id });
     //console.log(Student);
-    //console.log(Student.subjects);
-    Student.subjects[teacher.subject.toString()]++;
+    /* console.log(Student.subjects);
+    let temp = Student.subjects[teacher.subject.toString()]["P"]++;
+    console.log(temp);*/
+    if (req.query.present == "true")
+      Student.subjects[teacher.subject.toString()]["P"]++;
+    else Student.subjects[teacher.subject.toString()]["A"]++;
+
     let newStudent = await Students.findByIdAndUpdate(
       Student._id,
       { subjects: Student.subjects },
       { new: true }
     );
+
     res.status(200).json({ msg: "success", newStudent });
   } catch (error) {
     res.status(400).json({ msg: "error", err: error });

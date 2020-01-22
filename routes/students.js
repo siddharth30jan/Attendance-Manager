@@ -53,13 +53,13 @@ route.post("/signup", async (req, res) => {
 });
 
 //show my attendance
-route.get("/myattendance/:sub", auth, async (req, res) => {
+route.get("/myattendance", auth, async (req, res) => {
   try {
     let student = await Students.find({ _id: req.id });
     //console.log(student);
     return res.status(200).json({
       msg: "success",
-      attendance: student[0].subjects[req.params.sub.toString()]
+      attendance: student[0].subjects
     });
   } catch (error) {
     return res.status(400).json({ error });
