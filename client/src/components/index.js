@@ -1,4 +1,5 @@
 import Home from "./Home";
+import Logout from "./logout";
 import UserLogin from "./user/Login";
 import UserSignup from "./user/Signup";
 import TeachLogin from "./teachers/Login";
@@ -13,5 +14,6 @@ export {
   TeachLogin,
   TeachSignup,
   TeachHome,
-  UserHome
+  UserHome,
+  Logout
 };

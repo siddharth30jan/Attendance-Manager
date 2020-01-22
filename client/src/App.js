@@ -9,7 +9,8 @@ import {
   TeachLogin,
   TeachSignup,
   TeachHome,
-  UserHome
+  UserHome,
+  Logout
 } from "./components/index";
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
           <Route path="/teachlogin" exact component={TeachLogin} />
           <Route path="/teachsignup" exact component={TeachSignup} />
           <Route path="/teachhome" exact component={TeachHome} />
+          <Route path="/logout" exact component={Logout} />
         </Switch>
       </div>
     </Router>

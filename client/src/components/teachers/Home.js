@@ -1,5 +1,5 @@
-import React, { useState,useEffect  } from "react";
-import { Redirect } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Redirect, Link } from "react-router-dom";
 import Template from "./Template";
 
 const Home = () => {
@@ -19,15 +19,16 @@ const Home = () => {
         console.log(d.student);
         setStud(d.student);
       });
-  });
+  }, []);
 
   if (!token) return <Redirect to="/teachlogin" />;
-
+  if (!stud) return <h1>Loading....</h1>;
   return (
     <div>
       {stud.map(x => {
-        return <Template _id={x._id} />;
+        return <Template _id={x._id} name={x.name} />;
       })}
+      <Link to="/logout">Logout</Link>
     </div>
   );
 };

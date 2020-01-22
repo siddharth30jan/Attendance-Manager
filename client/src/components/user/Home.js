@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
 const Home = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -43,6 +43,9 @@ const Home = () => {
           </div>
         );
       })}
+      <Link to="/logout">
+        <h1>Logout</h1>
+      </Link>
     </div>
   );
 };

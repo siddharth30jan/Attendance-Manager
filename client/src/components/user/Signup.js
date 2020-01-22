@@ -17,7 +17,7 @@ const UserSignup = () => {
   const Submit = e => {
     e.preventDefault();
     console.log(name, password, email);
-    fetch("http://localhost:5000/api/students/signup", {
+    fetch("http://localhost:5001/api/students/signup", {
       method: "POST",
       body: JSON.stringify({ email, password, name }),
       headers: new Headers({

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
 const Home = () => {
   const [stud, setStud] = useState(false);
@@ -12,7 +12,7 @@ const Home = () => {
     cursor: "pointer"
   };
   if (stud) return <Redirect to="/userlogin" />;
-  if (teach) return <Redirect to="/teacherlogin" />;
+  if (teach) return <Redirect to="/teachlogin" />;
   return (
     <div>
       <div
@@ -31,6 +31,7 @@ const Home = () => {
       >
         TEACHER
       </div>
+     
     </div>
   );
 };
