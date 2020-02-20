@@ -13,6 +13,7 @@ const UserSignup = () => {
   const [email, setEmail] = useState("");
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [error, setError] = useState("");
 
   const Submit = e => {
     e.preventDefault();
@@ -29,9 +30,9 @@ const UserSignup = () => {
         console.log(data);
         if (data.msg == "success") {
           setIsLoggedIn(true);
-        }
+        } else setError(data.err);
       })
-      .catch(e => console.log(e));
+      .catch(e => setError(e));
   };
   if (isLoggedIn || token) return <Redirect to="/userlogin" />;
   return (
@@ -67,6 +68,7 @@ const UserSignup = () => {
         />
         <button style={{ marginTop: "5px" }}>Register</button>
       </form>
+      <h1>{error} </h1>
     </div>
   );
 };

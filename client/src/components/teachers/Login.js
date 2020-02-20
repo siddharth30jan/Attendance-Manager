@@ -11,6 +11,7 @@ const UserLogin = () => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [token, setToken] = useState(localStorage.getItem("token"));
+  const [error, setError] = useState("");
 
   const Submit = e => {
     e.preventDefault();
@@ -28,10 +29,10 @@ const UserLogin = () => {
         if (data.msg == "success") {
           localStorage.setItem("token", data.token);
           setToken(data.token);
-        }
+        } else setError(data.err);
       })
       .catch(e => {
-        console.log(e);
+        setError(e.err);
       });
   };
   if (token) return <Redirect to="/teachhome" />;
@@ -65,6 +66,7 @@ const UserLogin = () => {
           <button color="inherit">Signup</button>
         </Link>
       </div>
+      <h1>{error} </h1>
     </div>
   );
 };

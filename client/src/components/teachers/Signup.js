@@ -14,6 +14,7 @@ const UserSignup = () => {
   const [subject, setSubject] = useState("");
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [error, setError] = useState("");
 
   const Submit = e => {
     e.preventDefault();
@@ -32,7 +33,7 @@ const UserSignup = () => {
           setIsLoggedIn(true);
         }
       })
-      .catch(e => console.log(e));
+      .catch(e => setError(e));
   };
   if (isLoggedIn || token) return <Redirect to="/teachlogin" />;
   return (
@@ -75,8 +76,14 @@ const UserSignup = () => {
             setSubject(e.target.value);
           }}
         />
+        <select value={subject} onChange={e => setSubject(e.target.value)}>
+          <option value="chemistry">CHEMISTRY</option>
+          <option value="physics">PHYSICS</option>
+          <option value="maths">MATHS</option>
+        </select>
         <button style={{ marginTop: "5px" }}>Register</button>
       </form>
+      <h1>{error} </h1>
     </div>
   );
 };
