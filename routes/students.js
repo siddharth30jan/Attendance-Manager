@@ -27,7 +27,7 @@ route.post("/login", async (req, res) => {
   if (!result) return res.status(400).json({ err: "Password doesnot match!" });
   // console.log(process.env.JWT);
   //All constraints cleared,get the token and send it
-  const token = await jwt.sign({ id: stud.id }, process.env.JWT);
+  const token = await jwt.sign({ id: stud.id }, `asdfghj23456789`);
   res.json({ msg: "success", token });
 });
 

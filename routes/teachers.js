@@ -24,7 +24,7 @@ route.post("/login", async (req, res) => {
   if (!Teacher) return res.status(400).json({ err: "Email doesnot exist" });
   let result = await bcrypt.compare(password, Teacher.password);
   if (!result) return res.status(400).json({ err: "Password Incorrect" });
-  const token = await jwt.sign({ id: Teacher.id }, process.env.JWT);
+  const token = await jwt.sign({ id: Teacher.id }, `asdfghj23456789`);
   res.json({ msg: "success", token });
 });
 //eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlMTA2M2ZmZDliY2NhNTM4NGY1ZTlhNSIsImlhdCI6MTU3ODEzMjU4NX0.jCBh7DqPcSLksSq8kWLAceFwRO6WkpKSWi-jhBaX4wk
@@ -41,7 +41,7 @@ route.post("/signup", async (req, res) => {
       name,
       email,
       password: hash,
-      subject
+      subject,
     }).save();
     res.status(200).json({ msg: "success" });
   } catch (error) {
