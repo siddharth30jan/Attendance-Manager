@@ -15,5 +15,5 @@ export {
   TeachSignup,
   TeachHome,
   UserHome,
-  Logout
+  Logout,
 };

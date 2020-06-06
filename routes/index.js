@@ -1,6 +1,6 @@
 const route = require("express").Router();
 
 route.use("/students", require("./students"));
-route.use("/Teachers", require("./Teachers"));
+route.use("/teachers", require("./teachers"));
 
 module.exports = route;
