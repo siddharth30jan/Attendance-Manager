@@ -67,15 +67,7 @@ const UserSignup = () => {
             setPassword(e.target.value);
           }}
         />
-        <input
-          name="name"
-          type="text"
-          placeholder="subject"
-          style={{ marginTop: "5px" }}
-          onChange={e => {
-            setSubject(e.target.value);
-          }}
-        />
+        <label>Select your Subject</label>
         <select value={subject} onChange={e => setSubject(e.target.value)}>
           <option value="chemistry">CHEMISTRY</option>
           <option value="physics">PHYSICS</option>

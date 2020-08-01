@@ -17,7 +17,7 @@ const UserSignup = () => {
 
   const Submit = e => {
     e.preventDefault();
-    console.log(name, password, email);
+    //console.log(name, password, email);
     fetch("http://localhost:5001/api/students/signup", {
       method: "POST",
       body: JSON.stringify({ email, password, name }),
@@ -27,7 +27,7 @@ const UserSignup = () => {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
+       // console.log(data);
         if (data.msg == "success") {
           setIsLoggedIn(true);
         } else setError(data.err);

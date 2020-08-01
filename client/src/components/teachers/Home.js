@@ -13,10 +13,11 @@ const Home = () => {
   };
 
   useEffect(() => {
+    //Get all students
     fetch("http://localhost:5001/api/students")
       .then(res => res.json())
       .then(d => {
-        console.log(d.student);
+      //  console.log(d.student);
         setStud(d.student);
       });
   }, []);
