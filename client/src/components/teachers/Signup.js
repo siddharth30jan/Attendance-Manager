@@ -5,7 +5,7 @@ const style = {
   display: "flex",
   flexDirection: "column",
   //margin: "100px",
-  padding: "50px"
+  padding: "50px",
 };
 const UserSignup = () => {
   const [name, setName] = useState("");
@@ -16,24 +16,24 @@ const UserSignup = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [error, setError] = useState("");
 
-  const Submit = e => {
+  const Submit = (e) => {
     e.preventDefault();
     console.log(name, password, email, subject);
-    fetch("http://localhost:5001/api/teachers/signup", {
+    fetch("/api/teachers/signup", {
       method: "POST",
       body: JSON.stringify({ email, password, name, subject }),
       headers: new Headers({
-        "Content-Type": "application/json"
-      })
+        "Content-Type": "application/json",
+      }),
     })
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         console.log(data);
         if (data.msg == "success") {
           setIsLoggedIn(true);
         }
       })
-      .catch(e => setError(e));
+      .catch((e) => setError(e));
   };
   if (isLoggedIn || token) return <Redirect to="/teachlogin" />;
   return (
@@ -45,7 +45,7 @@ const UserSignup = () => {
           type="text"
           placeholder="name"
           style={{ marginTop: "5px" }}
-          onChange={e => {
+          onChange={(e) => {
             setName(e.target.value);
           }}
         />
@@ -54,7 +54,7 @@ const UserSignup = () => {
           type="email"
           placeholder="email"
           style={{ marginTop: "5px" }}
-          onChange={e => {
+          onChange={(e) => {
             setEmail(e.target.value);
           }}
         />
@@ -63,12 +63,12 @@ const UserSignup = () => {
           type="password"
           placeholder="password"
           style={{ marginTop: "5px" }}
-          onChange={e => {
+          onChange={(e) => {
             setPassword(e.target.value);
           }}
         />
         <label>Select your Subject</label>
-        <select value={subject} onChange={e => setSubject(e.target.value)}>
+        <select value={subject} onChange={(e) => setSubject(e.target.value)}>
           <option value="chemistry">CHEMISTRY</option>
           <option value="physics">PHYSICS</option>
           <option value="maths">MATHS</option>

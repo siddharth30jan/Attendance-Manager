@@ -5,7 +5,7 @@ const style = {
   display: "flex",
   flexDirection: "column",
   //margin: "100px",
-  padding: "20px"
+  padding: "20px",
 };
 const UserLogin = () => {
   const [password, setPassword] = useState("");
@@ -13,25 +13,25 @@ const UserLogin = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [error, setError] = useState("");
 
-  const Submit = e => {
+  const Submit = (e) => {
     e.preventDefault();
     console.log(password, email);
-    fetch("http://localhost:5001/api/students/login", {
+    fetch("/api/students/login", {
       method: "POST",
       body: JSON.stringify({ email, password }),
       headers: new Headers({
-        "Content-Type": "application/json"
-      })
+        "Content-Type": "application/json",
+      }),
     })
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         console.log(data);
         if (data.msg == "success") {
           localStorage.setItem("token", data.token);
           setToken(data.token);
         } else setError(data.err);
       })
-      .catch(e => {
+      .catch((e) => {
         setError(e);
       });
   };
@@ -45,7 +45,7 @@ const UserLogin = () => {
           type="email"
           placeholder="email"
           style={{ marginTop: "5px" }}
-          onChange={e => {
+          onChange={(e) => {
             setEmail(e.target.value);
           }}
         />
@@ -54,7 +54,7 @@ const UserLogin = () => {
           type="password"
           placeholder="password"
           style={{ marginTop: "5px" }}
-          onChange={e => {
+          onChange={(e) => {
             setPassword(e.target.value);
           }}
         />

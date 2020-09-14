@@ -9,15 +9,15 @@ const Home = () => {
     margin: "auto",
     padding: "20px",
     background: "blue",
-    cursor: "pointer"
+    cursor: "pointer",
   };
 
   useEffect(() => {
     //Get all students
-    fetch("http://localhost:5001/api/students")
-      .then(res => res.json())
-      .then(d => {
-      //  console.log(d.student);
+    fetch("/api/students")
+      .then((res) => res.json())
+      .then((d) => {
+        //  console.log(d.student);
         setStud(d.student);
       });
   }, []);
@@ -26,7 +26,7 @@ const Home = () => {
   if (!stud) return <h1>Loading....</h1>;
   return (
     <div>
-      {stud.map(x => {
+      {stud.map((x) => {
         return <Template _id={x._id} name={x.name} />;
       })}
       <Link to="/logout">Logout</Link>
