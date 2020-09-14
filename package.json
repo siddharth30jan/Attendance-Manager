@@ -1,11 +1,15 @@
 {
-  "name": "mywaysback",
+  "name": "Attendance-Manager",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "engine": {
+    "node": "12.13.0",
+    "npm": "6.12.0"
+  },
   "scripts": {
     "start": "node server.js",
-    "heroku-postbuild": "cd client && npm install && npm run build",
+    "heroku-postbuild": "npm install --prefix client && npm run build --prefix client",
     "setup": "npm i && cd client && npm i"
   },
   "author": "Siddharth",
