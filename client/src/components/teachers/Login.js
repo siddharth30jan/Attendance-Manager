@@ -12,10 +12,12 @@ const UserLogin = () => {
   const [email, setEmail] = useState("");
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const Submit = (e) => {
     e.preventDefault();
-    console.log(password, email);
+    // console.log(password, email);
+    setLoading(true);
     fetch("/api/teachers/login", {
       method: "POST",
       body: JSON.stringify({ email, password }),
@@ -25,13 +27,15 @@ const UserLogin = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        //console.log(data);
+        setLoading(false);
         if (data.msg == "success") {
           localStorage.setItem("token", data.token);
           setToken(data.token);
         } else setError(data.err);
       })
       .catch((e) => {
+        setLoading(false);
         setError(e.err);
       });
   };
@@ -67,6 +71,7 @@ const UserLogin = () => {
         </Link>
       </div>
       <h1>{error} </h1>
+      {loading && <h1>Loading....</h1>}
     </div>
   );
 };
